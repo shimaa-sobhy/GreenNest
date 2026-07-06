@@ -1,0 +1,130 @@
+import type { Review } from "@/context/ReviewsContext"
+
+export const defaultReviews: Review[] = [
+  {
+    id: "builtin_1", productId: 1, customerName: "Sarah Mitchell", rating: 5,
+    title: "Thriving in our living room",
+    text: "Ordered this as a gift for my partner and it arrived in perfect condition. The leaves are huge and gorgeous. Already sprouting new growth after just two weeks — it's clearly a happy, healthy plant.",
+    date: "2026-07-02T12:00:00.000Z",
+  },
+  {
+    id: "builtin_2", productId: 1, customerName: "James Chen", rating: 4,
+    title: "Beautiful plant, slightly smaller than expected",
+    text: "The plant arrived healthy and very well-packaged. It's beautiful with great leaf variegation, though it was a bit smaller than the photos suggested. Still, it's growing nicely and has adapted well.",
+    date: "2026-06-27T12:00:00.000Z",
+  },
+  {
+    id: "builtin_3", productId: 1, customerName: "Emma Rodriguez", rating: 5,
+    title: "Perfect centerpiece plant",
+    text: "This monstera is absolutely stunning. The fenestrations on the mature leaves are incredible and it immediately became the focal point of our living room. Customer service was also wonderful when I had a quick question.",
+    date: "2026-06-20T12:00:00.000Z",
+  },
+  {
+    id: "builtin_4", productId: 1, customerName: "Marcus Webb", rating: 4,
+    title: "Great quality, fast shipping",
+    text: "Very impressed with how quickly this arrived and the care taken in packaging — each leaf was individually wrapped. The plant itself is healthy and has adapted well to our home. Would order again.",
+    date: "2026-06-13T12:00:00.000Z",
+  },
+  {
+    id: "builtin_5", productId: 2, customerName: "Olivia Hart", rating: 5,
+    title: "Toughest plant I own",
+    text: "I've managed to kill so many plants, but this snake plant is genuinely unkillable. It's been thriving in a dim corner with minimal water for months. Perfect for anyone who wants greenery without the fuss.",
+    date: "2026-06-30T12:00:00.000Z",
+  },
+  {
+    id: "builtin_6", productId: 2, customerName: "Liam O'Brien", rating: 4,
+    title: "Exactly what my office needed",
+    text: "Great low-maintenance plant for my desk. The tall variegated leaves add nice architectural interest. Slightly pricey compared to big-box stores but the quality is noticeably better.",
+    date: "2026-06-23T12:00:00.000Z",
+  },
+  {
+    id: "builtin_7", productId: 2, customerName: "Sophie Laurent", rating: 5,
+    title: "Air quality upgrade",
+    text: "Noticed a real difference in our bedroom since adding this plant. It's beautiful and virtually maintenance-free. The yellow edges on the leaves are more vibrant in person. Highly recommend for beginners.",
+    date: "2026-06-05T12:00:00.000Z",
+  },
+  {
+    id: "builtin_8", productId: 3, customerName: "Noah Kim", rating: 5,
+    title: "Dramatic and beautiful",
+    text: "The fiddle leaf fig I received is gorgeous. Tall with full, glossy leaves. I was nervous about caring for it but the included care guide was super helpful. It's been thriving for over a month now.",
+    date: "2026-06-29T12:00:00.000Z",
+  },
+  {
+    id: "builtin_9", productId: 3, customerName: "Isabella Cruz", rating: 4,
+    title: "Stunning plant, finicky care",
+    text: "This is a beautiful, statement-making plant. It does require some attention to keep happy — I've learned to water only when the soil dries out. But it's worth the effort. Arrived healthy and well-packaged.",
+    date: "2026-06-21T12:00:00.000Z",
+  },
+  {
+    id: "builtin_10", productId: 3, customerName: "Ethan Brooks", rating: 5,
+    title: "Better than expected",
+    text: "Honestly exceeded my expectations. The size was generous and the plant arrived in excellent health. Multiple new leaves have unfurled since I got it. It's become the centerpiece of our dining room.",
+    date: "2026-06-10T12:00:00.000Z",
+  },
+  {
+    id: "builtin_11", productId: 4, customerName: "Ava Patel", rating: 5,
+    title: "Elegant and easy",
+    text: "My peace lily is blooming constantly. The white spathes are so elegant against the dark green foliage. It's incredibly forgiving — even when I forget to water it, it bounces right back after a good soak.",
+    date: "2026-07-01T12:00:00.000Z",
+  },
+  {
+    id: "builtin_12", productId: 4, customerName: "Oliver Grant", rating: 4,
+    title: "Classic beauty for low light",
+    text: "Beautiful peace lily with lush green foliage. It's been flowering consistently for a couple of months now. I have it in a lower-light corner and it's doing just fine. Great value for the size.",
+    date: "2026-06-17T12:00:00.000Z",
+  },
+  {
+    id: "builtin_13", productId: 4, customerName: "Mia Foster", rating: 5,
+    title: "Perfect for my bathroom",
+    text: "This peace lily loves the humidity in my bathroom and has grown significantly since I brought it home. The blooms keep coming and it was very reasonably priced for such a full, healthy plant.",
+    date: "2026-05-31T12:00:00.000Z",
+  },
+  {
+    id: "builtin_14", productId: 5, customerName: "Lucas Gray", rating: 4,
+    title: "Practical and pretty on my windowsill",
+    text: "Great little aloe. I've already used the gel for a minor kitchen burn and it worked beautifully. It's easy to care for and looks nice on my windowsill. Already growing a couple of pups.",
+    date: "2026-06-25T12:00:00.000Z",
+  },
+  {
+    id: "builtin_15", productId: 5, customerName: "Charlotte Reed", rating: 5,
+    title: "Love having this in my kitchen",
+    text: "I use this aloe almost weekly for smoothies and it's wonderful to have fresh gel on hand. It's thriving and producing plenty of offset pups. Such a useful plant to have around.",
+    date: "2026-06-07T12:00:00.000Z",
+  },
+  {
+    id: "builtin_16", productId: 6, customerName: "Benjamin Shaw", rating: 4,
+    title: "Lush and full fern",
+    text: "This fern arrived looking full and healthy with no yellow fronds. It's added so much life to my sunroom. It does need regular watering to stay happy, but the lush payoff is worth it.",
+    date: "2026-06-28T12:00:00.000Z",
+  },
+  {
+    id: "builtin_17", productId: 6, customerName: "Amelia Torres", rating: 5,
+    title: "So much greener in person",
+    text: "The photos don't do this justice. The fern is incredibly lush with vibrant green fronds that cascade beautifully. It's the perfect hanging plant for my covered porch. Thrilled with this purchase.",
+    date: "2026-06-15T12:00:00.000Z",
+  },
+  {
+    id: "builtin_18", productId: 7, customerName: "Henry Cooper", rating: 5,
+    title: "Already has babies!",
+    text: "This spider plant was already producing plantlets when it arrived. It's multiplying like crazy and I've started sharing the babies with friends. Best houseplant purchase I've made.",
+    date: "2026-06-26T12:00:00.000Z",
+  },
+  {
+    id: "builtin_19", productId: 7, customerName: "Lily Watson", rating: 4,
+    title: "Great starter plant",
+    text: "Bought this as my first houseplant and it's been so rewarding. It's grown so much and the arching variegated leaves look beautiful on my shelf. Very forgiving when I forgot to water it.",
+    date: "2026-06-19T12:00:00.000Z",
+  },
+  {
+    id: "builtin_20", productId: 8, customerName: "Daniel Park", rating: 4,
+    title: "Cute little desk companion",
+    text: "This little barrel cactus is adorable and arrived safely despite its spiky nature. Exactly as pictured. Perfect for my desk at work. It's survived my complete neglect for weeks at a time.",
+    date: "2026-06-24T12:00:00.000Z",
+  },
+  {
+    id: "builtin_21", productId: 8, customerName: "Grace Turner", rating: 5,
+    title: "Zero maintenance, maximum style",
+    text: "I wanted a plant that would survive my travel schedule and this cactus delivers. It's a beautiful sculptural piece that adds modern character. Had it for months with very minimal care and it looks great.",
+    date: "2026-05-26T12:00:00.000Z",
+  },
+]
