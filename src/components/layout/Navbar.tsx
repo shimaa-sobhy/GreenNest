@@ -167,7 +167,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="flex items-center gap-0.5">
+            <div className="flex items-center gap-0.5 flex-nowrap">
               <motion.button
                 onClick={() => setSearchOpen(true)}
                 className={`relative flex items-center justify-center w-9 sm:w-[42px] h-9 sm:h-[42px] rounded-full transition-all duration-300 ${
@@ -182,11 +182,11 @@ export default function Navbar() {
                 <Search className="w-[18px] h-[18px] relative z-10" />
               </motion.button>
 
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="max-sm:hidden">
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="shrink-0">
                 <Link
                   to="/compare"
                   aria-label="Compare"
-                  className={`relative flex items-center justify-center w-[42px] h-[42px] rounded-full transition-all duration-300 ${
+                  className={`relative flex items-center justify-center w-9 sm:w-[42px] h-9 sm:h-[42px] rounded-full transition-all duration-300 ${
                     transparent
                       ? "bg-white/10 backdrop-blur-sm border border-white/20 text-white shadow-lg shadow-white/5"
                       : "bg-white/[0.06] backdrop-blur-sm border border-forest/8 text-forest shadow-lg shadow-forest/5"
