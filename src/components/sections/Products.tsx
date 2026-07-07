@@ -20,13 +20,6 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0, 1] as [number, number, number, number] } },
 }
 
-const floatVariant = {
-  animate: {
-    y: [0, -10, 0],
-    transition: { duration: 4, repeat: Infinity, ease: "easeInOut" as const },
-  },
-}
-
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState("All")
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null)
@@ -104,19 +97,15 @@ export default function Products() {
                       }}
                     >
                       <div className="absolute inset-0 flex items-center justify-center p-6">
-                        <motion.div
-                          variants={floatVariant}
-                          animate="animate"
-                          className="w-full h-full flex items-center justify-center"
-                        >
+                        <div className="w-full h-full flex items-center justify-center">
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain scale-110 plant-shadow"
+                            className="w-full h-full object-contain scale-110 plant-shadow animate-float-product"
                             loading="lazy"
                             style={{ filter: "brightness(1.05) contrast(1.05)" }}
                           />
-                        </motion.div>
+                        </div>
                       </div>
 
                       <div className="absolute inset-0 bg-gradient-to-t from-forest/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />

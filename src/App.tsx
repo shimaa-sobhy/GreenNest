@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect, useState } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
 import { ReactLenis } from "lenis/react"
@@ -60,6 +60,26 @@ function AnimatedPage({ children }: { children: React.ReactNode }) {
   )
 }
 
+function LenisWrapper({ children }: { children: React.ReactNode }) {
+  const [smooth, setSmooth] = useState(true)
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      setSmooth(false)
+    }
+  }, [])
+
+  return (
+    <ReactLenis root options={{
+      duration: smooth ? 1.2 : 0,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: smooth,
+    }}>
+      {children}
+    </ReactLenis>
+  )
+}
+
 function Loading() {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-off-white z-50">
@@ -105,19 +125,21 @@ function Layout() {
 }
 
 export default function App() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && "scrollRestoration" in history) {
+      history.scrollRestoration = "manual"
+    }
+  }, [])
+
   return (
     <BrowserRouter>
       <AppProviders>
         <ToastProvider>
-          <ReactLenis root options={{
-            duration: 1.2,
-            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-          }}>
+          <LenisWrapper>
             <div className="min-h-screen bg-off-white">
               <Layout />
             </div>
-          </ReactLenis>
+          </LenisWrapper>
         </ToastProvider>
       </AppProviders>
     </BrowserRouter>

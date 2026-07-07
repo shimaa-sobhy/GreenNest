@@ -102,7 +102,7 @@ export default function Newsletter() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="relative flex items-center gap-3 bg-white/8 rounded-xl border border-white/10 p-2 pl-6 transition-all duration-300 focus-within:border-accent/40 focus-within:bg-white/10">
+          <div className="relative flex max-sm:flex-col items-stretch sm:items-center gap-3 bg-white/8 rounded-xl border border-white/10 p-2 sm:pl-6 transition-all duration-300 focus-within:border-accent/40 focus-within:bg-white/10">
             <input
               type="email"
               value={email}
@@ -113,7 +113,7 @@ export default function Newsletter() {
             />
             <motion.button
               type="submit"
-              className="relative overflow-hidden h-11 px-7 rounded-lg bg-white/15 border border-white/15 text-white text-xs font-semibold tracking-wider uppercase hover:bg-white/25 transition-colors"
+              className="relative overflow-hidden h-11 w-full sm:w-auto px-7 rounded-lg bg-white/15 border border-white/15 text-white text-xs font-semibold tracking-wider uppercase hover:bg-white/25 transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
             >

@@ -52,6 +52,17 @@ export default function GrowingVines({ id, className = "" }: GrowingVinesProps) 
     if (!svg || !section) return
 
     const pathEls = svg.querySelectorAll<SVGPathElement>(".vine-path")
+    if (pathEls.length === 0) return
+
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      pathEls.forEach((el) => {
+        const len = el.getTotalLength()
+        el.style.strokeDasharray = String(len)
+        el.style.strokeDashoffset = "0"
+      })
+      return
+    }
+
     pathEls.forEach((el) => {
       const len = el.getTotalLength()
       el.style.strokeDasharray = String(len)
@@ -60,7 +71,6 @@ export default function GrowingVines({ id, className = "" }: GrowingVinesProps) 
 
     const ctx = gsap.context(() => {
       pathEls.forEach((el, i) => {
-        const len = el.getTotalLength()
         gsap.to(el, {
           strokeDashoffset: 0,
           duration: 2.5 + i * 0.4,

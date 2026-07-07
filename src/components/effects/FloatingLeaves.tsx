@@ -198,7 +198,7 @@ function setupLeafAnimations(
   gsap.set(swayEl, { x: 0 })
   swayTl.progress(cfg.swayPhase / (Math.PI * 2))
 
-  if (cfg.hasBreathing) {
+  if (vw >= 768 && cfg.hasBreathing) {
     gsap.to(visualEl, {
       scale: 1.02,
       duration: cfg.breathingDuration,
@@ -208,7 +208,7 @@ function setupLeafAnimations(
     })
   }
 
-  if (cfg.hasFlicker) {
+  if (vw >= 768 && cfg.hasFlicker) {
     gsap.to(visualEl, {
       opacity: 0.85,
       duration: cfg.flickerDuration,
@@ -248,6 +248,8 @@ function setupPollenAnimation(el: HTMLDivElement, pData: (typeof pollenData)[num
   return { driftTl, fadeTl }
 }
 
+const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+
 export default function FloatingLeaves() {
   const containerRef = useRef<HTMLDivElement>(null)
   const initialized = useRef(false)
@@ -268,7 +270,8 @@ export default function FloatingLeaves() {
       const vw = window.innerWidth
       const vh = window.innerHeight
 
-      const maxLeaves = vw < 768 ? Math.floor(LEAF_COUNT * 0.6) : vw < 1024 ? Math.floor(LEAF_COUNT * 0.8) : LEAF_COUNT
+      const maxLeaves = vw < 768 ? 9 : vw < 1024 ? 14 : LEAF_COUNT
+      const maxPollen = vw < 768 ? 5 : vw < 1024 ? 8 : POLLEN_COUNT
 
       const leafEls = container.querySelectorAll<HTMLDivElement>(".leaf-particle")
       const swayEls = container.querySelectorAll<HTMLDivElement>(".leaf-sway")
@@ -291,6 +294,7 @@ export default function FloatingLeaves() {
       })
 
       pollenEls.forEach((el, i) => {
+        if (i >= maxPollen) { el.style.display = "none"; return }
         const pData = pollenData[i]
         if (!pData) return
         const anims = setupPollenAnimation(el, pData, vw, vh)
@@ -388,7 +392,7 @@ export default function FloatingLeaves() {
             className="leaf-depth absolute inset-0"
             style={{
               willChange: "transform",
-              transform: `scale(${cfg.depthScale})${cfg.rotateX ? ` rotateX(${cfg.rotateX}deg)` : ""}${cfg.rotateY ? ` rotateY(${cfg.rotateY}deg)` : ""}`,
+              transform: `scale(${cfg.depthScale})${!isMobile && cfg.rotateX ? ` rotateX(${cfg.rotateX}deg)` : ""}${!isMobile && cfg.rotateY ? ` rotateY(${cfg.rotateY}deg)` : ""}`,
             }}
           >
             <div

@@ -282,82 +282,61 @@ export default function Shop() {
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-cream/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div
-                        className="absolute max-sm:right-2 max-sm:top-2 top-3 right-3 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 lg:translate-x-2 lg:group-hover:translate-x-0"
-                      >
-                        <motion.div
-                          initial={{ opacity: 0, y: 8 }}
-                          whileInView={{ opacity: 0.95, y: 0 }}
-                          viewport={{ once: true, margin: "-30px" }}
-                          transition={{ duration: 0.35, delay: 0.12 + Math.min(i, 7) * 0.04, ease: "easeOut" }}
-                          className="flex flex-col max-sm:gap-1.5 gap-1.5 max-sm:p-[6px] max-sm:rounded-2xl max-sm:bg-white/55 max-sm:backdrop-blur-md max-sm:border max-sm:border-white/10 max-sm:shadow-lg max-sm:opacity-95"
-                        >
-                          <motion.button
-                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQuickViewProduct(product) }}
-                            className="w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-sm touch-manipulation"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.94 }}
-                            aria-label="Quick view"
-                          >
-                            <Eye className="w-3.5 h-3.5 text-subtle" />
-                          </motion.button>
-                          <motion.button
-                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); addItem(product); showToast(`${product.name} added to cart`) }}
-                            className="w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-sm touch-manipulation"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.94 }}
-                            aria-label="Add to cart"
-                          >
-                            <ShoppingCart className="w-3.5 h-3.5 text-subtle" />
-                          </motion.button>
-                          <motion.button
-                            onClick={(e) => {
-                              e.preventDefault()
-                              e.stopPropagation()
-                              const wasWished = isWishlisted(product.id)
-                              toggleItem(product)
-                              showToast(wasWished ? "Removed from Wishlist" : "Added to Wishlist ❤️")
-                            }}
-                            className={`w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl backdrop-blur-sm flex items-center justify-center transition-all shadow-sm touch-manipulation ${
-                              isWishlisted(product.id) ? "bg-forest text-white" : "bg-white/80 hover:bg-white text-subtle"
-                            }`}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.94 }}
-                            aria-label="Toggle wishlist"
-                          >
-                            <motion.span
-                              key={isWishlisted(product.id) ? "filled" : "empty"}
-                              animate={{ scale: [1, 1.35, 1] }}
-                              transition={{ duration: 0.35, ease: "easeInOut" }}
-                              className="flex"
-                            >
-                              <Heart className={`w-3.5 h-3.5 ${isWishlisted(product.id) ? "fill-white" : ""}`} />
-                            </motion.span>
-                          </motion.button>
-                          <motion.button
-                            onClick={(e) => {
-                              e.preventDefault()
-                              e.stopPropagation()
-                              const result = addToCompare(product)
-                              showToast(result.message)
-                            }}
-                            className={`w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl backdrop-blur-sm flex items-center justify-center transition-all shadow-sm touch-manipulation ${
-                              isCompared(product.id) ? "bg-forest text-white" : "bg-white/80 hover:bg-white text-subtle"
-                            }`}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.94 }}
-                            aria-label="Compare"
-                          >
-                            <Scale className={`w-3.5 h-3.5 ${isCompared(product.id) ? "text-white" : ""}`} />
-                          </motion.button>
-                          <ShareIconButton
-                            productName={product.name}
-                            productUrl={`${window.location.origin}/product/${product.id}`}
-                          />
-                        </motion.div>
-                      </div>
                     </motion.div>
                   </Link>
+                  <div className="absolute max-sm:right-2 max-sm:top-2 top-3 right-3 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 lg:translate-x-2 lg:group-hover:translate-x-0">
+                    <div className="flex flex-col max-sm:gap-[5px] gap-1.5 max-sm:p-[5px] max-sm:rounded-2xl max-sm:bg-white/55 max-sm:backdrop-blur-md max-sm:border max-sm:border-white/10 max-sm:shadow-lg max-sm:opacity-95 max-sm:h-[190px]">
+                      <button
+                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQuickViewProduct(product) }}
+                        className="w-8 h-8 sm:w-9 sm:h-9 max-sm:rounded-full rounded-xl bg-white/80 max-sm:bg-white/80 flex items-center justify-center hover:bg-white transition-all shadow-sm touch-manipulation hover:scale-105 active:scale-95"
+                        aria-label="Quick view"
+                      >
+                        <Eye className="w-3.5 h-3.5 text-subtle" />
+                      </button>
+                      <button
+                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); addItem(product); showToast(`${product.name} added to cart`) }}
+                        className="w-8 h-8 sm:w-9 sm:h-9 max-sm:rounded-full rounded-xl bg-white/80 max-sm:bg-white/80 flex items-center justify-center hover:bg-white transition-all shadow-sm touch-manipulation hover:scale-105 active:scale-95"
+                        aria-label="Add to cart"
+                      >
+                        <ShoppingCart className="w-3.5 h-3.5 text-subtle" />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          const wasWished = isWishlisted(product.id)
+                          toggleItem(product)
+                          showToast(wasWished ? "Removed from Wishlist" : "Added to Wishlist ❤️")
+                        }}
+                        className={`w-8 h-8 sm:w-9 sm:h-9 max-sm:rounded-full rounded-xl flex items-center justify-center transition-all shadow-sm touch-manipulation hover:scale-105 active:scale-95 ${
+                          isWishlisted(product.id) ? "bg-forest text-white" : "bg-white/80 max-sm:bg-white/80 hover:bg-white text-subtle"
+                        }`}
+                        aria-label="Toggle wishlist"
+                      >
+                        <span className="flex">
+                          <Heart className={`w-3.5 h-3.5 ${isWishlisted(product.id) ? "fill-white" : ""}`} />
+                        </span>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          const result = addToCompare(product)
+                          showToast(result.message)
+                        }}
+                        className={`w-8 h-8 sm:w-9 sm:h-9 max-sm:rounded-full rounded-xl flex items-center justify-center transition-all shadow-sm touch-manipulation hover:scale-105 active:scale-95 ${
+                          isCompared(product.id) ? "bg-forest text-white" : "bg-white/80 max-sm:bg-white/80 hover:bg-white text-subtle"
+                        }`}
+                        aria-label="Compare"
+                      >
+                        <Scale className={`w-3.5 h-3.5 ${isCompared(product.id) ? "text-white" : ""}`} />
+                      </button>
+                      <ShareIconButton
+                        productName={product.name}
+                        productUrl={`${window.location.origin}/product/${product.id}`}
+                      />
+                    </div>
+                  </div>
                   <div className="px-1">
                     <Link to={`/product/${product.id}`} className="touch-manipulation">
                       <h3 className="font-heading text-sm md:text-base text-forest mb-1.5 leading-tight group-hover:text-accent/80 transition-colors">{product.name}</h3>

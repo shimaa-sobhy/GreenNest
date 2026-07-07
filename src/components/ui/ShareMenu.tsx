@@ -236,14 +236,12 @@ export function ShareIconButton({ productName, productUrl }: ShareMenuProps) {
   }
 
   return (
-    <motion.button
+    <button
       onClick={handleClick}
-      className="w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-sm touch-manipulation"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.94 }}
+      className="w-8 h-8 sm:w-9 sm:h-9 max-sm:rounded-full rounded-xl bg-white/80 max-sm:bg-white/80 flex items-center justify-center hover:bg-white transition-all shadow-sm touch-manipulation hover:scale-105 active:scale-95"
       aria-label="Share product"
     >
       <Share2 className="w-3.5 h-3.5 text-subtle" />
-    </motion.button>
+    </button>
   )
 }

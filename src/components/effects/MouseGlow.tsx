@@ -1,9 +1,12 @@
 import { useEffect, useRef } from "react"
 
+const isBrowser = typeof window !== "undefined"
+
 export default function MouseGlow() {
   const glowRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (isBrowser && window.innerWidth < 1024) return
     const glow = glowRef.current
     if (!glow) return
 

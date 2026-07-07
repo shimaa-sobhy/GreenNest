@@ -95,6 +95,16 @@
 .animate-sway { animation: sway 3.5s ease-in-out infinite; }
 .animate-bloom { animation: bloom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
 .animate-grass { animation: grass-grow 1.2s ease-out forwards; }
+.animate-float-product { animation: float-product 4s ease-in-out infinite; }
+
+@keyframes float-product {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 767px) {
+  .leaf-visual { filter: none !important; }
+}
 
 .magnetic-btn {
   position: relative;

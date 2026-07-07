@@ -52,6 +52,18 @@ export default function GrowingPlant({ sectionId, position = "left", className =
     const stems = container.querySelectorAll<SVGPathElement>(".stem-1, .stem-2, .stem-3, .stem-4")
     const leaves = container.querySelectorAll<SVGEllipseElement>(".leaf-1, .leaf-2, .leaf-3, .leaf-4")
     const flowers = container.querySelectorAll<SVGCircleElement>(".flower-1, .flower-2")
+    if (stems.length === 0 && leaves.length === 0 && flowers.length === 0) return
+
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      stems.forEach((el) => {
+        const len = el.getTotalLength()
+        el.style.strokeDasharray = String(len)
+        el.style.strokeDashoffset = "0"
+      })
+      leaves.forEach((el) => gsap.set(el, { scale: 1, opacity: 1 }))
+      flowers.forEach((el) => gsap.set(el, { scale: 1, opacity: 1 }))
+      return
+    }
 
     stems.forEach((el) => {
       const len = el.getTotalLength()

@@ -14,6 +14,9 @@ const products = [
   { id: 4, name: "Alocasia Zebrina", price: "72", image: shop4, tag: "Rare" },
 ]
 
+const isBrowser = typeof window !== "undefined"
+const isMobile = isBrowser && window.innerWidth < 768
+
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
@@ -39,28 +42,50 @@ export default function OurPlants() {
       <GrowingPlant sectionId="our-plants" position="right" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <motion.div
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20 md:mb-16"
-          style={{ x: titleX, opacity: titleOpacity }}
-        >
-          <div>
-            <span className="text-subtle/40 text-xs font-medium tracking-[0.25em] uppercase mb-4 block">Our Collection</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading leading-[1.0] tracking-tight text-forest">
-              Living
-              <br />
-              <span className="italic font-light text-accent/50">Sculptures</span>
-            </h2>
+        {isMobile ? (
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20 md:mb-16">
+            <div>
+              <span className="text-subtle/40 text-xs font-medium tracking-[0.25em] uppercase mb-4 block">Our Collection</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading leading-[1.0] tracking-tight text-forest">
+                Living
+                <br />
+                <span className="italic font-light text-accent/50">Sculptures</span>
+              </h2>
+            </div>
+            <div>
+              <Link
+                to="/shop"
+                className="group inline-flex items-center gap-2 text-subtle/40 hover:text-forest text-xs font-semibold tracking-wider uppercase transition-colors"
+              >
+                View All
+                <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+              </Link>
+            </div>
           </div>
-          <motion.div whileHover={{ x: 3 }} whileTap={{ scale: 0.98 }}>
-            <Link
-              to="/shop"
-              className="group inline-flex items-center gap-2 text-subtle/40 hover:text-forest text-xs font-semibold tracking-wider uppercase transition-colors"
-            >
-              View All
-              <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
-            </Link>
+        ) : (
+          <motion.div
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20 md:mb-16"
+            style={{ x: titleX, opacity: titleOpacity }}
+          >
+            <div>
+              <span className="text-subtle/40 text-xs font-medium tracking-[0.25em] uppercase mb-4 block">Our Collection</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading leading-[1.0] tracking-tight text-forest">
+                Living
+                <br />
+                <span className="italic font-light text-accent/50">Sculptures</span>
+              </h2>
+            </div>
+            <motion.div whileHover={{ x: 3 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                to="/shop"
+                className="group inline-flex items-center gap-2 text-subtle/40 hover:text-forest text-xs font-semibold tracking-wider uppercase transition-colors"
+              >
+                View All
+                <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+              </Link>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {products.map((product, i) => (
@@ -74,25 +99,19 @@ export default function OurPlants() {
               viewport={{ once: true, margin: "-50px" }}
             >
               <div className="relative overflow-hidden rounded-[28px] bg-card mb-5 shadow-organic-lg">
-                <motion.div
-                  className="aspect-[3/4]"
-                  whileHover={{ scale: 1.04 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-                >
+                <div className="aspect-[3/4] overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className={`w-full h-full object-cover plant-shadow brightness-[1.06] contrast-[1.02] ${product.id === 1 ? "object-[50%_25%]" : product.id === 2 ? "object-[50%_50%]" : product.id === 3 ? "object-[50%_35%]" : "object-[50%_40%]"}`}
+                    className={`w-full h-full object-cover plant-shadow brightness-[1.06] contrast-[1.02] transition-all duration-500 hover:scale-105 ${product.id === 1 ? "object-[50%_25%]" : product.id === 2 ? "object-[50%_50%]" : product.id === 3 ? "object-[50%_35%]" : "object-[50%_40%]"}`}
                   />
-                </motion.div>
+                </div>
                 {product.tag && (
                   <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-forest/80 backdrop-blur-sm text-white text-[9px] font-semibold tracking-wider uppercase">
                     {product.tag}
                   </span>
                 )}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-forest/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="flex items-center justify-between px-1">
                 <h3 className="text-sm md:text-base font-heading leading-tight text-forest">{product.name}</h3>
