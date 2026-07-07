@@ -29,7 +29,7 @@ export default function PlantCareDetail() {
   }
 
   return (
-    <main className="bg-off-white pt-32 pb-28">
+    <main className="bg-off-white pt-32 pb-28 overflow-x-hidden">
       <div className="mx-auto max-w-3xl px-6 lg:px-10">
         <motion.div custom={1} variants={reveal} initial="initial" animate="animate" className="mb-10">
           <div className="flex flex-wrap gap-2 mb-6">

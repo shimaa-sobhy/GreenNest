@@ -267,7 +267,7 @@ export default function Shop() {
                   exit="exit"
                   className="group relative"
                 >
-                  <Link to={`/product/${product.id}`} className="block">
+                  <Link to={`/product/${product.id}`} className="block touch-manipulation">
                     <motion.div
                       className="relative overflow-hidden rounded-[28px] mb-4 shadow-organic"
                       style={{ aspectRatio: "3/4" }}
@@ -282,72 +282,84 @@ export default function Shop() {
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-cream/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute top-3 right-3 flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-2 group-hover:translate-x-0">
-                        <motion.button
-                          onClick={(e) => { e.preventDefault(); setQuickViewProduct(product) }}
-                          className="w-9 h-9 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-sm"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.92 }}
-                          aria-label="Quick view"
+                      <div
+                        className="absolute max-sm:right-2 max-sm:top-2 top-3 right-3 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 lg:translate-x-2 lg:group-hover:translate-x-0"
+                      >
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          whileInView={{ opacity: 0.95, y: 0 }}
+                          viewport={{ once: true, margin: "-30px" }}
+                          transition={{ duration: 0.35, delay: 0.12 + Math.min(i, 7) * 0.04, ease: "easeOut" }}
+                          className="flex flex-col max-sm:gap-1.5 gap-1.5 max-sm:p-[6px] max-sm:rounded-2xl max-sm:bg-white/55 max-sm:backdrop-blur-md max-sm:border max-sm:border-white/10 max-sm:shadow-lg max-sm:opacity-95"
                         >
-                          <Eye className="w-3.5 h-3.5 text-subtle" />
-                        </motion.button>
-                        <motion.button
-                          onClick={(e) => { e.preventDefault(); addItem(product); showToast(`${product.name} added to cart`) }}
-                          className="w-9 h-9 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-sm"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.92 }}
-                          aria-label="Add to cart"
-                        >
-                          <ShoppingCart className="w-3.5 h-3.5 text-subtle" />
-                        </motion.button>
-                        <motion.button
-                          onClick={(e) => {
-                            e.preventDefault()
-                            const wasWished = isWishlisted(product.id)
-                            toggleItem(product)
-                            showToast(wasWished ? "Removed from Wishlist" : "Added to Wishlist ❤️")
-                          }}
-                          className={`w-9 h-9 rounded-xl backdrop-blur-sm flex items-center justify-center transition-all shadow-sm ${
-                            isWishlisted(product.id) ? "bg-forest text-white" : "bg-white/80 hover:bg-white text-subtle"
-                          }`}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.92 }}
-                          aria-label="Toggle wishlist"
-                        >
-                          <motion.span
-                            key={isWishlisted(product.id) ? "filled" : "empty"}
-                            animate={{ scale: [1, 1.35, 1] }}
-                            transition={{ duration: 0.35, ease: "easeInOut" }}
-                            className="flex"
+                          <motion.button
+                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQuickViewProduct(product) }}
+                            className="w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-sm touch-manipulation"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.94 }}
+                            aria-label="Quick view"
                           >
-                            <Heart className={`w-3.5 h-3.5 ${isWishlisted(product.id) ? "fill-white" : ""}`} />
-                          </motion.span>
-                        </motion.button>
-                        <motion.button
-                          onClick={(e) => {
-                            e.preventDefault()
-                            const result = addToCompare(product)
-                            showToast(result.message)
-                          }}
-                          className={`w-9 h-9 rounded-xl backdrop-blur-sm flex items-center justify-center transition-all shadow-sm ${
-                            isCompared(product.id) ? "bg-forest text-white" : "bg-white/80 hover:bg-white text-subtle"
-                          }`}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.92 }}
-                          aria-label="Compare"
-                        >
-                          <Scale className={`w-3.5 h-3.5 ${isCompared(product.id) ? "text-white" : ""}`} />
-                        </motion.button>
-                        <ShareIconButton
-                          productName={product.name}
-                          productUrl={`${window.location.origin}/product/${product.id}`}
-                        />
+                            <Eye className="w-3.5 h-3.5 text-subtle" />
+                          </motion.button>
+                          <motion.button
+                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); addItem(product); showToast(`${product.name} added to cart`) }}
+                            className="w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-all shadow-sm touch-manipulation"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.94 }}
+                            aria-label="Add to cart"
+                          >
+                            <ShoppingCart className="w-3.5 h-3.5 text-subtle" />
+                          </motion.button>
+                          <motion.button
+                            onClick={(e) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              const wasWished = isWishlisted(product.id)
+                              toggleItem(product)
+                              showToast(wasWished ? "Removed from Wishlist" : "Added to Wishlist ❤️")
+                            }}
+                            className={`w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl backdrop-blur-sm flex items-center justify-center transition-all shadow-sm touch-manipulation ${
+                              isWishlisted(product.id) ? "bg-forest text-white" : "bg-white/80 hover:bg-white text-subtle"
+                            }`}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.94 }}
+                            aria-label="Toggle wishlist"
+                          >
+                            <motion.span
+                              key={isWishlisted(product.id) ? "filled" : "empty"}
+                              animate={{ scale: [1, 1.35, 1] }}
+                              transition={{ duration: 0.35, ease: "easeInOut" }}
+                              className="flex"
+                            >
+                              <Heart className={`w-3.5 h-3.5 ${isWishlisted(product.id) ? "fill-white" : ""}`} />
+                            </motion.span>
+                          </motion.button>
+                          <motion.button
+                            onClick={(e) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              const result = addToCompare(product)
+                              showToast(result.message)
+                            }}
+                            className={`w-9 h-9 max-sm:rounded-full max-sm:bg-white/80 rounded-xl backdrop-blur-sm flex items-center justify-center transition-all shadow-sm touch-manipulation ${
+                              isCompared(product.id) ? "bg-forest text-white" : "bg-white/80 hover:bg-white text-subtle"
+                            }`}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.94 }}
+                            aria-label="Compare"
+                          >
+                            <Scale className={`w-3.5 h-3.5 ${isCompared(product.id) ? "text-white" : ""}`} />
+                          </motion.button>
+                          <ShareIconButton
+                            productName={product.name}
+                            productUrl={`${window.location.origin}/product/${product.id}`}
+                          />
+                        </motion.div>
                       </div>
                     </motion.div>
                   </Link>
                   <div className="px-1">
-                    <Link to={`/product/${product.id}`}>
+                    <Link to={`/product/${product.id}`} className="touch-manipulation">
                       <h3 className="font-heading text-sm md:text-base text-forest mb-1.5 leading-tight group-hover:text-accent/80 transition-colors">{product.name}</h3>
                     </Link>
                     <div className="flex items-center gap-2">

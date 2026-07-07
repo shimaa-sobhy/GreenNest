@@ -176,7 +176,7 @@ export default function ProductDetail() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05, duration: 0.6 }}
                 >
-                  <Link to={`/product/${p.id}`} className="group">
+                  <Link to={`/product/${p.id}`} className="group touch-manipulation">
                     <motion.div
                       className="relative overflow-hidden rounded-2xl mb-4"
                       style={{ aspectRatio: "3/4" }}

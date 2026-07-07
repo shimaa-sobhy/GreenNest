@@ -74,14 +74,14 @@ export default function Hero() {
       </svg>
 
       <motion.div
-        className="absolute top-[12%] right-[4%] w-64 h-64 opacity-[0.07]"
+        className="absolute max-sm:top-[25%] max-sm:w-32 max-sm:h-32 top-[12%] right-[4%] w-64 h-64 opacity-[0.07]"
         style={{ x: foliageX, y: foliageY }}
       >
         <img src={plant1} alt="" className="w-full h-full object-cover organic-blob plant-shadow" />
       </motion.div>
 
       <motion.div
-        className="absolute bottom-[8%] right-[20%] w-48 h-48 opacity-[0.06]"
+        className="absolute max-sm:bottom-[15%] max-sm:w-28 max-sm:h-28 bottom-[8%] right-[20%] w-48 h-48 opacity-[0.06]"
         animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       >
@@ -89,7 +89,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        className="absolute top-[50%] left-[2%] w-28 h-28 opacity-[0.05]"
+        className="absolute max-sm:w-20 max-sm:h-20 top-[50%] left-[2%] w-28 h-28 opacity-[0.05]"
         animate={{ y: [0, -10, 0], rotate: [0, -3, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       >

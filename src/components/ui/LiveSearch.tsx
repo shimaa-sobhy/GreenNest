@@ -6,6 +6,15 @@ import { products } from "@/data/products"
 import { productDescriptions, productTags } from "@/data/productSearch"
 import type { Product } from "@/data/products"
 
+function useLockBodyScroll(locked: boolean) {
+  useEffect(() => {
+    if (!locked) return
+    const original = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => { document.body.style.overflow = original }
+  }, [locked])
+}
+
 const RECENT_KEY = "greenest_recent_searches"
 const MAX_RECENT = 5
 
@@ -50,6 +59,8 @@ export default function LiveSearch({ open, onClose }: LiveSearchProps) {
   const [selectedIndex, setSelectedIndex] = useState(-1)
   const [recentSearches, setRecentSearches] = useState<string[]>(loadRecent)
   const [showRecent, setShowRecent] = useState(false)
+
+  useLockBodyScroll(open)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -184,7 +195,7 @@ export default function LiveSearch({ open, onClose }: LiveSearchProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-40 bg-forest/40 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] bg-forest/40 backdrop-blur-sm"
         >
           <div className="absolute top-0 left-0 right-0 bg-off-white shadow-xl" ref={dropdownRef}>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
