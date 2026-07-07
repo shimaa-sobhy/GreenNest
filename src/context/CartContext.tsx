@@ -1,6 +1,17 @@
-import { createContext, useContext, useState, useCallback, useMemo, type ReactNode } from "react"
+import { createContext, useContext, useState, useCallback, useMemo, useEffect, type ReactNode } from "react"
 import type { CartItem, User } from "./types"
 import type { Product } from "@/data/products"
+
+const STORAGE_KEY = "plantnest_cart"
+
+function loadCart(): CartItem[] {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    return stored ? JSON.parse(stored) : []
+  } catch {
+    return []
+  }
+}
 
 interface CartContextType {
   items: CartItem[]
@@ -15,7 +26,15 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | null>(null)
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([])
+  const [items, setItems] = useState<CartItem[]>(loadCart)
+
+  useEffect(() => {
+    if (items.length > 0) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+    } else if (localStorage.getItem(STORAGE_KEY) !== null) {
+      localStorage.removeItem(STORAGE_KEY)
+    }
+  }, [items])
 
   const addItem = useCallback((product: Product) => {
     setItems((prev) => {
